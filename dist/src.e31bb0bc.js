@@ -118,7 +118,30 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"index.js":[function(require,module,exports) {
-
+// let handLeft = document.querySelector(".handLeft")
+// let handRight = document.querySelector(".handRight")
+// handLeft.addEventListener('touchstart', (e) => {
+//     if (e.target === handLeft) {
+//         console.log(true);
+//         handLeft.animate([0 % {
+//             transform: 'rotate(0deg)'
+//         },
+//         33 % {
+//             transform: 'rotate(23deg)'
+//         },
+//         66 % {
+//             transform: 'rotate(45deg)'
+//         },
+//         100 % {
+//             transform: 'rotate(0deg)'
+//         }], {
+//             // timing options
+//             duration: 500
+//             // iterations: Infinity
+//         })
+//         console.log('确实成功');
+//     }
+// })
 },{}],"../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -147,7 +170,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56425" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55223" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -324,4 +347,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/src.e31bb0bc.js.map
+//# sourceMappingURL=src.e31bb0bc.js.map
