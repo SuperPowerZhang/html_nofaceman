@@ -1,0 +1,92 @@
+* {
+  margin: 0 auto;
+  padding: 0 auto;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.main {
+  margin-top: 20px;
+  width: 300px;
+  height: 300px;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 500px) {
+  .main {
+    right: 0;
+  }
+}
+
+.main .window .man {
+  width: 200px;
+  height: 250px;
+  margin-top: 75px;
+  overflow: hidden;
+}
+
+@keyframes wave1 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  33% {
+    transform: rotate(23deg);
+  }
+
+  66% {
+    transform: rotate(45deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes wave2 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  33% {
+    transform: rotate(-23deg);
+  }
+
+  66% {
+    transform: rotate(-45deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.main .handLeft:hover {
+  animation: wave1 infinite 500ms linear;
+  transform-origin: 50% 0%;
+}
+
+.main .handRight:hover {
+  animation: wave2 infinite 500ms linear;
+  transform-origin: 50% 0%;
+}
+
+.btns {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+.btns button {
+  margin-bottom: 15px;
+  padding: 5px;
+}
