@@ -209,23 +209,23 @@ body {
   transform: rotate(-15deg);
 }
 
-@keyframes wave1 {
-  0% {
-    transform: rotate(0deg);
-  }
+/*@keyframes wave1 {*/
+/*  0% {*/
+/*    transform: rotate(0deg);*/
+/*  }*/
 
-  33% {
-    transform: rotate(23deg);
-  }
+/*  33% {*/
+/*    transform: rotate(23deg);*/
+/*  }*/
 
-  66% {
-    transform: rotate(45deg);
-  }
+/*  66% {*/
+/*    transform: rotate(45deg);*/
+/*  }*/
 
-  100% {
-    transform: rotate(0deg);
-  }
-}
+/*  100% {*/
+/*    transform: rotate(0deg);*/
+/*  }*/
+/*}*/
 
 @keyframes wave2 {
   0% {
