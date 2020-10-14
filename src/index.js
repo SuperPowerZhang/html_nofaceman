@@ -10,12 +10,15 @@ let flag = false;
 let turn = true;
 let text2 = "";
 let speed = 30
-
+let timer = undefined
 let step = () => {
+    if (timer) {
+        window.clearTimeout(timer)
+    }
     console.log(speed);
     //每次执行step都声明了一个定时器，那需要清除一个它，再开始一个新的
     if (turn) {
-        setTimeout(function () {
+        timer = setTimeout(function () {
             if (i < length) {
                 text2 += text[i];
                 text[i - 1] === "@" ? flag = true : null;
@@ -44,9 +47,7 @@ $(".on").on('click', () => {
     step(speed)
 });
 $(".fast").on('click', () => {
-
     speed = 30
-
 });
 $(".normal").on('click', () => {
     speed = 300

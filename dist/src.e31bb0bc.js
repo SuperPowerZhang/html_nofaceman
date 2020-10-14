@@ -145,12 +145,17 @@ var flag = false;
 var turn = true;
 var text2 = "";
 var speed = 30;
+var timer = undefined;
 
 var step = function step() {
+  if (timer) {
+    window.clearTimeout(timer);
+  }
+
   console.log(speed); //每次执行step都声明了一个定时器，那需要清除一个它，再开始一个新的
 
   if (turn) {
-    setTimeout(function () {
+    timer = setTimeout(function () {
       if (i < length) {
         text2 += _text.default[i];
         _text.default[i - 1] === "@" ? flag = true : null;
