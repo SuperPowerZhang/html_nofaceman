@@ -15,7 +15,6 @@ let step = () => {
     if (timer) {
         window.clearTimeout(timer)
     }
-    console.log(speed);
     //每次执行step都声明了一个定时器，那需要清除一个它，再开始一个新的
     if (turn) {
         timer = setTimeout(function () {
