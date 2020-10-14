@@ -2,8 +2,6 @@ import text from './text'
 let hack = document.getElementById("hack");
 let style = document.getElementById("style");
 let html = document.querySelector("html");
-console.log(style.innerHTML);
-
 
 let length = text.length;
 let i = 0;
@@ -12,43 +10,51 @@ let flag = false;
 let turn = true;
 let text2 = "";
 let speed = 30
-let step = (time) => {
-    console.log(time);
 
+let step = () => {
+    console.log(speed);
+    //每次执行step都声明了一个定时器，那需要清除一个它，再开始一个新的
     if (turn) {
-        const timer = setTimeout(function () {
+        setTimeout(function () {
             if (i < length) {
-                // if (text[i] === " ") {
-                //     console.log("检测到空格了");
-                //     text2 += "&nbsp;";
-                // } else {
                 text2 += text[i];
-                // }
-                //当上一个文字是@时，flag改为true，开始写样式；
                 text[i - 1] === "@" ? flag = true : null;
-                //判断flag为true时，看是否修改style
                 flag ? style.innerHTML += text[i] : null;
-                //当下一个文字是&时，flag改为false，停止写样式；
                 text[i + 1] === "&" ? flag = false : null;
                 hack.innerText = text2;
                 i += 1;
-                //好像只写一个window也可以的
                 window.scrollTo({
                     top: 9999,
                     left: 0,
                     behavior: 'smooth'
                 });
-                html.scrollTo({
-                    top: 9999,
-                    left: 0,
-                    behavior: 'smooth'
-                });
-                step(time);
+                step(speed);
             }
-        }, time)
+        }, speed)
     }
 }
 step(speed);
+
+$(".off").on('click', () => {
+    turn = false
+});
+$(".on").on('click', () => {
+    turn = true
+    //如果我点很多次on的话，会生成多个step，怎么清除之前的呢
+    step(speed)
+});
+$(".fast").on('click', () => {
+
+    speed = 30
+
+});
+$(".normal").on('click', () => {
+    speed = 300
+});
+$(".slow").on('click', () => {
+    speed = 600
+});
+
 let handLeft = document.querySelector(".handLeft")
 let handRight = document.querySelector(".handRight")
 
@@ -110,37 +116,4 @@ handRight.addEventListener('touchstart', (e) => {
         console.log('呦呦呦确实成功');
 
     }
-
 })
-$(".off").on('click', () => {
-    turn = false
-});
-$(".on").on('click', () => {
-    turn = true
-    step(300)
-});
-$(".fast").on('click', () => {
-    turn = false
-    speed = 30
-    turn = true
-    step(speed)
-    console.log(10);
-
-});
-$(".normal").on('click', () => {
-    turn = false
-    speed = 300
-    turn = true
-    step(speed)
-    step(300)
-    console.log(300);
-
-});
-$(".slow").on('click', () => {
-    turn = false
-    speed = 600
-    turn = true
-    step(speed)
-    step(600)
-    console.log(600);
-});

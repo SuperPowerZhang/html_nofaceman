@@ -138,7 +138,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var hack = document.getElementById("hack");
 var style = document.getElementById("style");
 var html = document.querySelector("html");
-console.log(style.innerHTML);
 var length = _text.default.length;
 var i = 0; //flag用来标志style的内容是否接受修改
 
@@ -147,44 +146,47 @@ var turn = true;
 var text2 = "";
 var speed = 30;
 
-var step = function step(time) {
-  console.log(time);
+var step = function step() {
+  console.log(speed); //每次执行step都声明了一个定时器，那需要清除一个它，再开始一个新的
 
   if (turn) {
-    var timer = setTimeout(function () {
+    setTimeout(function () {
       if (i < length) {
-        // if (text[i] === " ") {
-        //     console.log("检测到空格了");
-        //     text2 += "&nbsp;";
-        // } else {
-        text2 += _text.default[i]; // }
-        //当上一个文字是@时，flag改为true，开始写样式；
-
-        _text.default[i - 1] === "@" ? flag = true : null; //判断flag为true时，看是否修改style
-
-        flag ? style.innerHTML += _text.default[i] : null; //当下一个文字是&时，flag改为false，停止写样式；
-
+        text2 += _text.default[i];
+        _text.default[i - 1] === "@" ? flag = true : null;
+        flag ? style.innerHTML += _text.default[i] : null;
         _text.default[i + 1] === "&" ? flag = false : null;
         hack.innerText = text2;
-        i += 1; //好像只写一个window也可以的
-
+        i += 1;
         window.scrollTo({
           top: 9999,
           left: 0,
           behavior: 'smooth'
         });
-        html.scrollTo({
-          top: 9999,
-          left: 0,
-          behavior: 'smooth'
-        });
-        step(time);
+        step(speed);
       }
-    }, time);
+    }, speed);
   }
 };
 
 step(speed);
+$(".off").on('click', function () {
+  turn = false;
+});
+$(".on").on('click', function () {
+  turn = true; //如果我点很多次on的话，会生成多个step，怎么清除之前的呢
+
+  step(speed);
+});
+$(".fast").on('click', function () {
+  speed = 30;
+});
+$(".normal").on('click', function () {
+  speed = 300;
+});
+$(".slow").on('click', function () {
+  speed = 600;
+});
 var handLeft = document.querySelector(".handLeft");
 var handRight = document.querySelector(".handRight");
 handLeft.addEventListener('touchstart', function (e) {
@@ -239,36 +241,6 @@ handRight.addEventListener('touchstart', function (e) {
     console.log('呦呦呦确实成功');
   }
 });
-$(".off").on('click', function () {
-  turn = false;
-});
-$(".on").on('click', function () {
-  turn = true;
-  step(300);
-});
-$(".fast").on('click', function () {
-  turn = false;
-  speed = 30;
-  turn = true;
-  step(speed);
-  console.log(10);
-});
-$(".normal").on('click', function () {
-  turn = false;
-  speed = 300;
-  turn = true;
-  step(speed);
-  step(300);
-  console.log(300);
-});
-$(".slow").on('click', function () {
-  turn = false;
-  speed = 600;
-  turn = true;
-  step(speed);
-  step(600);
-  console.log(600);
-});
 },{"./text":"text.js"}],"../../../AppData/Roaming/npm/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -297,7 +269,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56643" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56424" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
