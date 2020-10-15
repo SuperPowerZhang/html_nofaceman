@@ -9863,7 +9863,7 @@ var player = {
     ".off": "off",
     ".on": "on",
     ".fast": "fast",
-    ".norma": "normal",
+    ".normal": "normal",
     ".slow": "slow"
   },
   on: function on() {
