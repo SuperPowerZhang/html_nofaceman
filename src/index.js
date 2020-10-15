@@ -13,7 +13,7 @@ let flag = false;
 let turn = true;
 let text2 = "";
 let timer = undefined
-let speed = 0
+let speed = 100
 
 const player = {
     step: () => {

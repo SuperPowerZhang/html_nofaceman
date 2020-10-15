@@ -9830,7 +9830,7 @@ var flag = false;
 var turn = true;
 var text2 = "";
 var timer = undefined;
-var speed = 0;
+var speed = 100;
 var player = {
   step: function step() {
     player.bind();
