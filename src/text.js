@@ -72,30 +72,9 @@ const string = `
   background-color: rgb(244, 125, 126);
   border-radius: 30px/35px;
 }
-.main .window .man .face .tear::before {
-    content: "";
+.main .window .man .face .tear::before,.tear::after {
     display: block;
-    width: 70px;
-    height: 30px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -18px);
-    background-color: #fff;
-    border-radius: 20px/4px;
-}
-
-.main .window .man .face .tear::after {
-    content: "";
-    display: block;
-    width: 32px;
-    height: 72px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border-radius: 5px/15px;
+    content:'';
 }&
 
 画两个眼睛：
@@ -157,15 +136,6 @@ const string = `
 .main .window .man .face .mouth::before {
   content: "";
   display: block;
-  width: 40px;
-  height: 40px;
-  border: 4px solid #000;
-  border-radius: 20px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -100%);
-  margin-top: 2px;
 }&
 
 加上两只小手：

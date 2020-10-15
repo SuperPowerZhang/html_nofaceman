@@ -1,66 +1,90 @@
 import text from './text'
+import $ from './jquery'
+
 let hack = document.getElementById("hack");
 let style = document.getElementById("style");
 let html = document.querySelector("html");
-
 let length = text.length;
+console.log(length);
+
 let i = 0;
 //flag用来标志style的内容是否接受修改
 let flag = false;
 let turn = true;
 let text2 = "";
-let speed = 30
 let timer = undefined
-let step = () => {
-    if (timer) {
-        window.clearTimeout(timer)
-    }
-    //每次执行step都声明了一个定时器，那需要清除一个它，再开始一个新的
-    if (turn) {
-        timer = setTimeout(function () {
-            if (i < length) {
-                text2 += text[i];
-                text[i - 1] === "@" ? flag = true : null;
-                flag ? style.innerHTML += text[i] : null;
-                text[i + 1] === "&" ? flag = false : null;
-                hack.innerText = text2;
-                i += 1;
-                window.scrollTo({
-                    top: 9999,
-                    left: 0,
-                    behavior: 'smooth'
-                });
-                step(speed);
-            }
-        }, speed)
-    }
-}
-step(speed);
+let speed = 0
 
-$(".off").on('click', () => {
-    turn = false
-});
-$(".on").on('click', () => {
-    turn = true
-    //如果我点很多次on的话，会生成多个step，怎么清除之前的呢
-    step(speed)
-});
-$(".fast").on('click', () => {
-    speed = 30
-});
-$(".normal").on('click', () => {
-    speed = 300
-});
-$(".slow").on('click', () => {
-    speed = 600
-});
+const player = {
+    step: () => {
+        player.bind()
+        if (timer) {
+            window.clearTimeout(timer)
+        }
+        //每次执行step都声明了一个定时器，那需要清除一个它，再开始一个新的
+        if (turn) {
+            timer = setTimeout(function () {
+                if (i < length) {
+                    text2 += text[i];
+                    text[i - 1] === "@" ? flag = true : null;
+                    flag ? style.innerHTML += text[i] : null;
+                    text[i + 1] === "&" ? flag = false : null;
+                    hack.innerText = text2;
+                    i += 1;
+                    window.scrollTo({
+                        top: 9999,
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                    player.step(speed);
+                }
+            }, speed)
+        }
+    },
+    events: {
+        ".off": "off",
+        ".on": "on",
+        ".fast": "fast",
+        ".norma": "normal",
+        ".slow": "slow"
+    },
+    on: () => {
+        turn = true
+        player.step(speed)
+    },
+    off: () => {
+        turn = false
+    },
+    fast: () => {
+
+        speed = 30
+    },
+    normal: () => {
+        speed = 100
+
+    },
+    slow: () => {
+
+        speed = 500
+    },
+    bind: () => {
+        for (let k in player.events) {
+            $(`${k}`).on('click', player[player.events[k]]);
+            $(`${k}`).on('touchstart', player[player.events[k]]);
+
+        }
+    }
+
+}
+player.step(speed);
+
+
 
 let handLeft = document.querySelector(".handLeft")
 let handRight = document.querySelector(".handRight")
 
 handLeft.addEventListener('touchstart', (e) => {
     if (e.target === handLeft) {
-        console.log("确实监听到了左手的触摸事件");
         handLeft.animate([
             {
                 transform: 'rotate(0deg)',
@@ -81,16 +105,15 @@ handLeft.addEventListener('touchstart', (e) => {
             }], {
             // timing options
             duration: 500,
-            iterations: 1//默认值就是1，可以指定小数
+            iteration: 1
+            // iterations: 1
         })
-        console.log('确实成功');
 
     }
 
 })
 handRight.addEventListener('touchstart', (e) => {
     if (e.target === handRight) {
-        console.log("确实监听到了右手的触摸事件");
         handRight.animate([
             {
                 transform: 'rotate(0deg)',
@@ -111,9 +134,7 @@ handRight.addEventListener('touchstart', (e) => {
             }], {
             // timing options
             duration: 500,
-            iterations: 1//默认值就是1，可以指定小数
+            iteration: 1
         })
-        console.log('呦呦呦确实成功');
-
     }
 })
